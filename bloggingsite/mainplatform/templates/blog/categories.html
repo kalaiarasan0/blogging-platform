@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>{{ cats }}</title>
+{% endblock %}
+
+{% block content %}
+    {% if category_posts %}
+        <h1>{{ cats }}</h1>
+        
+        {% for post in category_posts %}
+            <div class="card">
+                <div class="col-12">
+                    <div class="blog-card__info">
+                        <h5>{{ post.title }}</h5>
+                        <p>
+                            <a href="#" class="icon-link mr-3">
+                                <i class="fa fa-pencil-square-o"></i> 
+                                {{ post.post_date }} &nbsp;
+                                {{ post.author }}   &nbsp;&nbsp;&nbsp;
+                            </a>
+                            <a href="{% url 'Category_View' post.category %}" class="icon-link">
+                                <i class="fa fa-comments-o"></i> {{ post.category }}
+                            </a>
+                        </p>
+
+                        <small>
+                            {% if user.is_authenticated %}
+                                -<a href="{% url 'Updata_Post' post.pk %}">(Edit)</a>
+                                -<a href="{% url 'Delete_Post' post.pk %}">(Del)</a>
+                            {% endif %}
+                        </small><br>   
+                        
+                        <p>{{ post.body|slice:":299"|safe }}</p>
+                        <a href="{% url 'Articles-Detail' post.pk %}" class="btn btn-secondary">READ MORE</a>  
+                    </div>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+
+    {% else %}
+        <h1>Sorry</h1>
+    {% endif %}
+{% endblock %}

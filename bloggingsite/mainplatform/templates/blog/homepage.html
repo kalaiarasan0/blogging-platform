@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    Blog HomePage
+{% endblock %}
+
+{% block content %}
+    <h1>Posts</h1>
+    
+    {% for post in object_list %}
+        <div class="card">
+            <div class="col-12">
+                <div class="blog-card__info">
+                    <h5>{{ post.title }}</h5>
+                    <p>
+                        <a href="#" class="icon-link mr-3">
+                            <i class="fa fa-pencil-square-o"></i> 
+                            {{ post.post_date }} &nbsp;
+                            {{ post.author }}   &nbsp;&nbsp;&nbsp;
+                        </a>
+                        <a href="{% url 'Category_View' post.category %}" class="icon-link">
+                            <i class="fa fa-comments-o"></i> {{ post.category }}
+                        </a>
+                    </p>
+                    
+                    <small>
+                        {% if user.is_authenticated and user == post.author %}
+                            - <a href="{% url 'Updata_Post' post.pk %}">(Edit)</a>
+                            - <a href="{% url 'Delete_Post' post.pk %}">(Del)</a>
+                        {% endif %}
+                    </small><br>   
+                    {% load custom_filters %}
+                    <p>{{ post.body|slice_by_words:100|safe }}</p>
+                    <a href="{% url 'Articles-Detail' post.pk %}" class="btn btn-secondary">READ MORE</a>  
+                </div>
+            </div>
+        </div>
+        <br>
+    {% empty %}
+        <p>No posts available.</p>
+    {% endfor %}
+{% endblock %}

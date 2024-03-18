@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+
+    <title>Create user profile page</title>
+
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Create Public Profile Page </h1>
+
+<br><br>
+
+<div class="form-group">
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Create</button>
+    </form>
+
+
+
+    
+</div>    
+
+{% else %}
+    <center><h1>You're Not Allowed To Enter In This Webpage OR In This URL </h1></center>
+
+{% endif %}
+
+{% endblock %}

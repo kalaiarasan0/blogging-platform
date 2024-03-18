@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>Add Comment</title>
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h1>Give Comment</h1>
+
+    <br><br>
+
+    <div class="form-group">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary btn-sm">Comment</button>
+            <a href="{% url 'Home' %}" class="btn btn-secondary btn-sm">Back</a> <br><br>
+        </form>
+    </div>    
+
+{% else %}
+    <center><h1>You're Not Allowed To Comment To Unstill <a href="{% url 'login' %}">Login</a> </h1></center>
+{% endif %}
+
+{% endblock %}

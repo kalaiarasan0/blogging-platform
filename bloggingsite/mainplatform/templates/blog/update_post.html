@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>Edit Your Post</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Edit Your Data</h1>
+
+        <br><br>
+
+        <div class="form-group">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Update</button>
+                <a href="{% url 'Home' %}" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div> 
+    {% else %}
+        <center><h1>You're Not Allowed To Enter In This Webpage OR In This URL</h1></center>
+    {% endif %}
+{% endblock %}

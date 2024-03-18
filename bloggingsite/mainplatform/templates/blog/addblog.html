@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>AddyourBlog</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Give Your Data</h1>
+
+        <br><br>
+
+        <div class="form-group">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Post</button>
+            </form>
+            <script>
+                var name = "{{ user.id }}";
+                document.getElementById("authornameid").value = name;
+            </script>
+        </div>    
+    {% else %}
+        <center><h1>You're Not Allowed To Enter In This Webpage OR In This URL </h1></center>
+    {% endif %}
+{% endblock %}

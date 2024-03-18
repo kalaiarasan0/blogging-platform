@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+
+    <title>Edit Public Profile</title>
+
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+
+
+{% if user.id == profile.user.id %}
+
+<h1>Edit Public Profile</h1>
+
+<br><br>
+
+<div class="form-group">
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Update</button>
+        <button class="btn btn-secondary">Cancel</button>
+    </form>
+
+
+</div>    
+
+{% else %}
+    <center><h1>USER NOT THE RIGTH USER TO EDIT </h1></center>
+
+{% endif %}
+
+
+
+{% else %}
+    <center><h1>You're Not Allowed To Enter In This Webpage OR In This URL </h1></center>
+
+{% endif %}
+
+
+
+{% endblock %}

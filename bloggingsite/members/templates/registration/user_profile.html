@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>User Profile</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>USER PROFILE</h1>
+<br><br>
+{{ page_user }}
+
+<br><br>
+
+<div class="card mb-3" style="max-width: 90%;">
+    <div class="row g-0">
+      <div class="col-md-2">
+{% if page_user.profile_pic %}
+
+        <img src="{{ page_user.profile_pic.url }}" class="img-fluid rounded-start" alt="...">
+
+{% else %}
+
+        <img src="{% static 'blog/image/images.png' %}" class="img-fluid rounded-start" alt="...">
+
+{% endif %}
+      </div>
+      <div class="col-md-10">
+        <div class="card-body">
+            <h5 class="card-title">{{ page_user }}</h5>
+
+            <p class="small card-text">
+      
+            {% if page_user.twitter %}
+                <a href="{{ page_user.twitter }}">Twitter </a> |
+
+            {% else %}
+                <a href="">Twitter </a> |
+
+            {% endif %}
+
+            {% if page_user.facebook %}
+                <a href="{{ page_user.facebook }}">Facebook </a> |
+
+            {% else %}
+                <a href="">Facebook</a> |
+     
+            {% endif %}
+
+
+            {% if page_user.instagram %}
+                <a href="{{page_user.instagram }}">Instagram </a> |
+
+            {% else %}
+                <a href="">Instagram </a> |
+     
+            {% endif %}
+
+
+            {% if page_user.theards %}
+                <a href="{{ page_user.theards }}">Threads </a>
+            {% else %}
+                <a href="">Threads </a> |
+    
+            {% endif %}
+
+            </p>
+            <p class="card-text">{{ page_user.bio }}</p>
+
+            <br>
+            <a href="{% url 'edit_profile_page' pk=page_user.pk %}">edit</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

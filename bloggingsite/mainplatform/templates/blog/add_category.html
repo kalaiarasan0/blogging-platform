@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    <title>Add Your Blog Category</title>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h1>Give Your Category</h1>
+
+        <br><br>
+
+        <div class="form-group">
+            <div class="categorycss">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Add</button>
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <center><h1>You're Not Allowed To Enter In This Webpage OR In This URL</h1></center>
+    {% endif %}
+{% endblock %}

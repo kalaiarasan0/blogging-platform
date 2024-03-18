@@ -2,11 +2,11 @@ from typing import Any
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm,PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
-from mainplatform.models import profile
+from mainplatform.models import Profile
 
 class ProfilePageForm(forms.ModelForm):
     class Meta:
-        model = profile
+        model = Profile
         fields = ('bio','profile_pic','twitter','facebook','instagram','theards')
 
 
